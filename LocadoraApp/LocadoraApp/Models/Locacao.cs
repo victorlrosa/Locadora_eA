@@ -11,7 +11,9 @@ namespace LocadoraApp.Models
         public int Id { get; set; }
 
         public Cliente Cliente { get; set; }
+        public int ClienteId { get; set; }
         public Filme Filme { get; set; }
+        public int FilmeId { get; set; }
         public DateTime DataLocacao { get; private set; }
         public DateTime DataDevolucao { get; private set; }
 
@@ -38,7 +40,7 @@ namespace LocadoraApp.Models
         public void PrazoComum(Filme filme)
         {
             if (filme.Lancamento == Lancamento.Comum)
-                DataLocacao = DataLocacao.AddDays(3.0);
+                DataDevolucao = DataLocacao.AddDays(3.0);
         }
     }
 }
