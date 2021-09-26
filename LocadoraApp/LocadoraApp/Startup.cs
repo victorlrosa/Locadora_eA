@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using LocadoraApp.Data;
 
 namespace LocadoraApp
 {
@@ -32,6 +34,10 @@ namespace LocadoraApp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LocadoraApp", Version = "v1" });
             });
+            string mySqlConnection = Configuration.GetConnectionString("LocadoraAppContext");
+
+            services.AddDbContextPool<LocadoraAppContext>(options =>
+                    options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
