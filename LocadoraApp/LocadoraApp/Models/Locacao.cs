@@ -30,13 +30,13 @@ namespace LocadoraApp.Models
             DataLocacao = dataLocacao;
             DataDevolucao = dataDevolucao;
         }
-
+        //Filmes do tipo lançamento, terão um prazo de entrega de 2 dias.
         public void PrazoLancamento(Filme filme)
         {
             if (filme.Lancamento == Lancamento.Lancamento)
                 DataDevolucao = DataLocacao.AddDays(2.0);
         }
-
+        //Filmes comuns, terão um prazo de entrega de 3 dias.
         public void PrazoComum(Filme filme)
         {
             if (filme.Lancamento == Lancamento.Comum)

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocadoraApp.Migrations
 {
     [DbContext(typeof(LocadoraAppContext))]
-    [Migration("20210926033851_Initial")]
+    [Migration("20210926190013_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,7 +68,7 @@ namespace LocadoraApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClienteId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataDevolucao")
@@ -77,7 +77,7 @@ namespace LocadoraApp.Migrations
                     b.Property<DateTime>("DataLocacao")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("FilmeId")
+                    b.Property<int>("FilmeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -93,11 +93,15 @@ namespace LocadoraApp.Migrations
                 {
                     b.HasOne("LocadoraApp.Models.Cliente", "Cliente")
                         .WithMany("Locacoes")
-                        .HasForeignKey("ClienteId");
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("LocadoraApp.Models.Filme", "Filme")
                         .WithMany("Locacoes")
-                        .HasForeignKey("FilmeId");
+                        .HasForeignKey("FilmeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cliente");
 

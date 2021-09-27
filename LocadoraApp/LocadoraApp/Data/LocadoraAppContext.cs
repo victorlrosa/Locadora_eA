@@ -33,6 +33,7 @@ namespace LocadoraApp.Data
             modelBuilder.Entity<Filme>()
                 .Property(f => f.Titulo)
                 .HasMaxLength(100);
+
         }
     }
 }
